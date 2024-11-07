@@ -43,7 +43,10 @@ export async function POST(request: Request) {
     const filePathJson = await filePathRes.json()
     const filePath = filePathJson.result.file_path
 
-    return Response.json({ success: true, filePath })
+    return Response.json({
+      success: true,
+      file_url: `/api/get-image?filepath=${filePath}`
+    })
   } catch (error) {
     return Response.json({ error: String(error) })
   }
